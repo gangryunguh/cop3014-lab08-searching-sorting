@@ -5,7 +5,10 @@
 #include <iostream>
 using namespace std;
 
-int binarySearch(int[], int, int);	// function prototype 
+void bubbleSort(int *array, int size);
+void displaySortedArray(int *, int size);
+int binarySearch(int[], int, int);	// function prototype
+
 const int SIZE = 16;
 
 int main()
@@ -18,6 +21,8 @@ int main()
 	cout << "Enter an integer to search for:" << endl;
 	cin >> value;
 
+	bubbleSort(array, SIZE);
+	displaySortedArray(array, SIZE);
 	found = binarySearch(array, SIZE, value);
 	// function call to perform the binary search
 	// on array looking for an occurrence of value 
@@ -30,6 +35,35 @@ int main()
 
 	return 0;
 }
+
+
+void bubbleSort(int *array, int size) {
+    bool sorted;
+    int count = size;
+    do {
+        sorted = true;
+        for (int i = 0; i < count-1; i++) {
+            if (array[i] > array[i+1]) {
+                // swap
+                int temp = array[i+1];
+                array[i+1] = array[i];
+                array[i] = temp;
+                sorted = false;
+            }
+        }
+        count -= 1;
+
+    } while (!sorted);
+}
+
+
+void displaySortedArray(int *array, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << array[i] << "," << flush;
+    }
+    cout << '\b' << endl;
+}
+
 
 //*******************************************************************
 //	binarySearch
@@ -58,10 +92,10 @@ int binarySearch(int array[], int numElems, int value)	// function heading
 			return middle;		// if value is in the middle, we are done
 
 		else if (array[middle]<value)
-			last = middle - 1;	// toss out the second remaining half of
+			first = middle + 1;	// toss out the second remaining half of
 
 		else
-			first = middle + 1;	// toss out the first remaining half of
+			last = middle - 1;	// toss out the first remaining half of
 								// the array and search the second
 	}
 

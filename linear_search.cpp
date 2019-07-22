@@ -1,24 +1,24 @@
-// This program performs a linear search on a character array
+// This program performs a linear search on a intacter array
 
 // Place Your Name Here
 
 #include <iostream>
 using namespace std;
 
-int searchList(char[], int, char); // function prototype 
+int searchList(int[], int, int); // function prototype 
 
 const int SIZE = 8;
 
 int main()
 {
-	char word[SIZE] = "Harpoon";
+	int nums[] = {3, 6, -19, 5, 5, 0, -2, 99};
 	int found;
-	char ch;
+	int ch;
 
 	cout << "Enter a letter to search for:" << endl;
 	cin >> ch;
 
-	found = searchList(word, SIZE, ch);
+	found = searchList(nums, SIZE, ch);
 
 	if (found == -1)
 		cout << "The letter " << ch
@@ -42,7 +42,7 @@ int main()
 //
 //*******************************************************************
 
-int searchList(char List[], int numElems, char value)
+int searchList(int List[], int numElems, int value)
 {
 	for (int count = 0; count <= numElems; count++)
 	{
